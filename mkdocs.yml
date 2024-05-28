@@ -1,0 +1,10 @@
+site_name: Modified Expensify Docs
+theme: readthedocs
+
+nav:
+  - Home: index.md
+  - User Guide:
+    - Writing your docs: writing_your_docs.md
+  - About: 
+    - Developer Guide: developer_guide.md
+    
