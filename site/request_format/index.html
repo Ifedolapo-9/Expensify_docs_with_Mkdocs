@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Developer guide - Modified Expensify Docs</title>
+    <title>Request format - Modified Expensify Docs</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Developer guide";
-        var mkdocs_page_input_path = "developer_guide.md";
+        var mkdocs_page_name = "Request format";
+        var mkdocs_page_input_path = "request_format.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,8 +52,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../request_format/">Request format</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Request format</a>
                 </li>
               </ul>
               <ul>
@@ -78,7 +78,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Developer guide</li>
+      <li class="breadcrumb-item active">Request format</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -87,10 +87,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <p>Every request to the Expensify API follows the same pattern: a JSON payload that identifies the job to execute is passed as a parameter called <code>requestJobDescription</code>. Additionally, other parameters may be needed based on the type of job.</p>
+<p>Finally, there is a general rate limit of 50 jobs started per minute. Exceeding this limit will result in the following error message: <code>You have been rate-limited. Please try again later or contact help@expensify.com for assistance.</code></p>
+<p>Every request has to be made against the endpoint <code>https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations</code>.</p>
+<p><strong>Request Job Description format</strong></p>
+<p>For every request, the <code>requestJobDescription</code> JSON parameter needs to contain the following data:</p>
+<table>
+<thead>
+<tr>
+<th>PARAMETER</th>
+<th>TYPE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>The type of job to execute.</td>
+</tr>
+<tr>
+<td>credentials</td>
+<td>JSON object</td>
+<td>An object containing two key-values used to authenticate you:  <br>* partnerUserID</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>* partnerUserSecret</td>
+</tr>
+<tr>
+<td>inputSettings</td>
+<td>JSON Object</td>
+<td>(Optional) Additional settings specific to the job type. Refer to the Expensify API documentation for details on supported inputSettings for each job.</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../authentication/" class="btn btn-neutral float-left" title="Authentication"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../endpoints/" class="btn btn-neutral float-right" title="Endpoints">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -112,6 +151,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../authentication/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../endpoints/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

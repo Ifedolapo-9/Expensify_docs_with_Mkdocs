@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Developer guide - Modified Expensify Docs</title>
+    <title>Authentication - Modified Expensify Docs</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Developer guide";
-        var mkdocs_page_input_path = "developer_guide.md";
+        var mkdocs_page_name = "Authentication";
+        var mkdocs_page_input_path = "authentication.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -48,8 +48,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../glossary/">Glossary</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Authentication</a>
                 </li>
               </ul>
               <ul>
@@ -78,7 +78,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Developer guide</li>
+      <li class="breadcrumb-item active">Authentication</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -87,10 +87,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <p>To use the API, you will need to generate API credentials.</p>
+<ol>
+<li>
+<p>Create an Expensify account at <a href="https://www.expensify.com/">https://www.expensify.com/</a></p>
+</li>
+<li>
+<p>Go to <a href="https://www.expensify.com/tools/integrations/">https://www.expensify.com/tools/integrations/</a></p>
+</li>
+<li>
+<p>A pair of credentials: <code>partnerUserID</code> and <code>partnerUserSecret</code> will be generated and shown on the page.</p>
+</li>
+</ol>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../glossary/" class="btn btn-neutral float-left" title="Glossary"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../request_format/" class="btn btn-neutral float-right" title="Request format">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -112,6 +127,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../glossary/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../request_format/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

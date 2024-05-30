@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Developer guide - Modified Expensify Docs</title>
+    <title>Error codes - Modified Expensify Docs</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Developer guide";
-        var mkdocs_page_input_path = "developer_guide.md";
+        var mkdocs_page_name = "Error codes";
+        var mkdocs_page_input_path = "errorcodes.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -60,8 +60,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../endpoints/">Endpoints</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../errorcodes/">Error codes</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Error codes</a>
                 </li>
               </ul>
       </div>
@@ -78,7 +78,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Developer guide</li>
+      <li class="breadcrumb-item active">Error codes</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -87,10 +87,112 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <p><strong>Expensify API Error Codes</strong></p>
+<p>This table lists potential error codes encountered when using the Expensify API and their possible reasons.</p>
+<table>
+<thead>
+<tr>
+<th>Error Code</th>
+<th>Possible Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>207 (Partial Success)</td>
+<td>Some of the reports failed to update. Their IDs are contained in the list <code>failedReports</code> within the response.</td>
+</tr>
+<tr>
+<td>400 (Bad Request)</td>
+<td>Missing required parameter</td>
+</tr>
+<tr>
+<td></td>
+<td>Invalid parameter value format</td>
+</tr>
+<tr>
+<td></td>
+<td>Malformed JSON body</td>
+</tr>
+<tr>
+<td>401 (Unauthorized)</td>
+<td>Invalid or missing API credentials</td>
+</tr>
+<tr>
+<td></td>
+<td>Insufficient permissions for the requested action</td>
+</tr>
+<tr>
+<td>403 (Forbidden)</td>
+<td>The requested action is not allowed for your account</td>
+</tr>
+<tr>
+<td></td>
+<td>Resource access restrictions in place</td>
+</tr>
+<tr>
+<td>404 (Not Found)</td>
+<td>Requested endpoint does not exist</td>
+</tr>
+<tr>
+<td></td>
+<td>Resource not found (e.g., report with a specific ID)</td>
+</tr>
+<tr>
+<td>409 (Conflict)</td>
+<td>Attempting to create a duplicate resource (e.g., creating a report with an existing ID)</td>
+</tr>
+<tr>
+<td></td>
+<td>Conflicting data in the request</td>
+</tr>
+<tr>
+<td>410 (Validation Error)</td>
+<td>The request contains invalid data that fails validation checks on the Expensify API side.</td>
+</tr>
+<tr>
+<td></td>
+<td>Examples: Malformed date format, invalid enum value, etc.</td>
+</tr>
+<tr>
+<td>410 (Gone)</td>
+<td>Requested endpoint has been deprecated and is no longer available</td>
+</tr>
+<tr>
+<td></td>
+<td>Resource has been deleted</td>
+</tr>
+<tr>
+<td>422 (Unprocessable Entity)</td>
+<td>Validation errors in the request payload</td>
+</tr>
+<tr>
+<td></td>
+<td>Business logic violation (e.g., attempting to update a report with an invalid status)</td>
+</tr>
+<tr>
+<td>429 (Too Many Requests)</td>
+<td>Exceeding API rate limits</td>
+</tr>
+<tr>
+<td></td>
+<td>Throttling applied due to frequent requests</td>
+</tr>
+<tr>
+<td>500 (Generic Error)</td>
+<td>Unexpected error on the Expensify API server.</td>
+</tr>
+<tr>
+<td></td>
+<td>This is a generic error code for internal server issues. Consult Expensify support for further investigation in case of a 500 error.</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../endpoints/" class="btn btn-neutral float-left" title="Endpoints"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
   <hr/>
 
@@ -111,6 +213,8 @@
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
+    
+      <span><a href="../endpoints/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>
