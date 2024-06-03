@@ -1,6 +1,6 @@
 **Expensify Postman Collection Glossary**
 
-This table defines key terms you will encounter throughout the Expensify API and this Postman collection.
+This table defines key terms you will encounter throughout the Expensify API.
 
 | Term | Definition | Usage in Expensify Collection |
 | --- | --- | --- |
