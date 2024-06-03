@@ -4,10 +4,10 @@ theme: readthedocs
 nav:
   - Home: 
     - Introduction: index.md
-  - Glossary: glossary.md
   - Authentication: authentication.md
   - Request format: request_format.md
   - Endpoints: endpoints.md
   - Error codes: errorcodes.md
+  - Glossary: glossary.md
 
  
