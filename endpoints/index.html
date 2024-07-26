@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Endpoints - Modified Expensify Docs</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Endpoints";
+        var mkdocs_page_input_path = "endpoints.md";
+        var mkdocs_page_url = null;
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Modified Expensify Docs
+        </a>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../request_format/">Request format</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Endpoints</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#export">EXPORT</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#create">CREATE</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../errorcodes/">Error codes</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/">Glossary</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../swagger/">Swagger</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Modified Expensify Docs</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Endpoints</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="expensify-endpoints">Expensify Endpoints</h1>
+<h2 id="export">EXPORT</h2>
+<p>Export expense or report data in a configurable format for analysis or insertion into your accounting package. See the <a href="https://integrations.expensify.com/Integration-Server/doc/export_report_template.html">export template format reference</a> for more information about how to write export templates.</p>
+<p><strong><em><code>requestJobDescription</code> format</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>FORMAT</th>
+<th>VALID VALUES</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>file</td>
+<td></td>
+</tr>
+<tr>
+<td>onReceive</td>
+<td>JSON object</td>
+<td><code>{"immediateResponse":["returnRandomFileName"]}</code></td>
+<td>Returns the name of the generated report. Only this export mode is supported at the moment.</td>
+</tr>
+<tr>
+<td>inputSettings</td>
+<td>JSON object</td>
+<td>See inputSettings</td>
+<td>Settings used to filter the reports that are exported.</td>
+</tr>
+<tr>
+<td>outputSettings</td>
+<td>JSON object</td>
+<td>See outputSettings</td>
+<td>Settings for the generated file.</td>
+</tr>
+<tr>
+<td><strong>Optional elements</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>test</td>
+<td>String</td>
+<td>true, false</td>
+<td>If set to true, actions defined in <code>onFinish</code> will not be executed.</td>
+</tr>
+<tr>
+<td>onFinish</td>
+<td>JSON array</td>
+<td>See onFinish</td>
+<td>Actions performed at the end of the export.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>inputSettings</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>FORMAT</th>
+<th>VALID VALUES</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>combinedReportData</td>
+<td>Specifies all Expensify reports will be combined into a single file.</td>
+</tr>
+<tr>
+<td>filters</td>
+<td>JSON object</td>
+<td>See inputSettings filters</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Optional elements</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reportState</td>
+<td>String</td>
+<td>One or more of <code>"OPEN"</code>, <code>"SUBMITTED"</code>, <code>"APPROVED"</code>, <code>"REIMBURSED"</code>, <code>"ARCHIVED"</code>.  <br/>When using multiple statuses, separate them by a comma, <em>e.g.</em> <code>"APPROVED,REIMBURSED"</code> <br/><strong>Note:</strong> These values respectively match the statuses "Open", "Processing", "Approved", "Reimbursed" and "Closed" on the website</td>
+<td>Only the reports matching the specified status(es) will be exported.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>String</td>
+<td>Any integer, as a string</td>
+<td>Maximum number of reports to export.</td>
+</tr>
+<tr>
+<td>employeeEmail</td>
+<td>String</td>
+<td>A valid email address  <br/><strong>Note:</strong> <br/>* The usage of this parameter is restricted to certain domains  <br/>* If this parameter is used, reports in the OPEN status cannot be exported</td>
+<td>The reports will be exported from that account.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>inputSettings.filters</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>FORMAT</th>
+<th>VALID VALUES</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reportIDList</td>
+<td>String,  <br/><em>Required if</em> <code>_startDate_</code> <em>or</em> <code>_approvedAfter_</code> <em>are not specified</em></td>
+<td></td>
+<td>Comma-separated list of report IDs to be exported.</td>
+</tr>
+<tr>
+<td>policyIDList</td>
+<td>String,  <br/><em>Optional</em></td>
+<td></td>
+<td>Comma-separated list of policy IDs the exported reports must be under.</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>Date,  <br/><em>Required if</em> <code>_reportIDList_</code> <em>or</em> <code>_approvedAfter_</code> <em>are not specified</em></td>
+<td>yyyy-mm-dd formatted date</td>
+<td>Filters out all reports submitted or created before the given date, whichever occurred last (inclusive).</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>Date,  <br/><em>Optional</em></td>
+<td>yyyy-mm-dd formatted date</td>
+<td>Filters out all reports submitted or created after the given date, whichever occurred last (inclusive).</td>
+</tr>
+<tr>
+<td>approvedAfter</td>
+<td>Date,  <br/><em>Required if</em> <code>_reportIDList_</code> <em>or</em> <code>_startDate_</code> <em>are not specified</em></td>
+<td>yyyy-mm-dd formatted date</td>
+<td>Filters out all reports approved before, or on that date. This filter is only used against reports that have been approved.</td>
+</tr>
+<tr>
+<td>markedAsExported</td>
+<td>String,  <br/><em>Optional</em></td>
+<td>Any string</td>
+<td>Filters out reports that have already been exported with that label out.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>outputSettings</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>FORMAT</th>
+<th>VALID VALUES</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fileExtension</td>
+<td>String</td>
+<td>One or multiple of "csv", "xls", "xlsx", "txt", "pdf", "json", "xml"</td>
+<td>Specifies the format of the generated report.  <br/><em>Note</em>: if the "pdf" option is chosen, one PDF file will be generated for each report exported.</td>
+</tr>
+<tr>
+<td><strong>Optional elements</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fileBasename</td>
+<td>String</td>
+<td>Any valid file base name</td>
+<td>The name of the generated file(s) will start with this value, and a random part will be added to make each filename globally unique. If not specified, the default value <code>export</code> is used.</td>
+</tr>
+<tr>
+<td>includeFullPageReceiptsPdf</td>
+<td>Boolean</td>
+<td><code>true</code>, <code>false</code></td>
+<td>Specifies whether generated PDFs should include full page receipts. This parameter is used only if <code>fileExtension</code> contains <code>pdf</code>.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>onFinish</code> (Optional)</li>
+</ul>
+<p>This section can be used to describe actions that need to be performed at the end of the export.</p>
+<table>
+<thead>
+<tr>
+<th>ACTION NAME</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>Send an email linking to the generated report to a provided list of recipients.</td>
+</tr>
+<tr>
+<td>markAsExported</td>
+<td>Mark the exported reports as “Exported” in Expensify.</td>
+</tr>
+<tr>
+<td>sftpUpload</td>
+<td>upload the generated file(s) to an SFTP server.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>FORMAT</th>
+<th>VALID VALUES</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>email</code></strong> action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>recipients</td>
+<td>String</td>
+<td>Comma-separated list of valid email addresses</td>
+<td>People to email at the end of the export.</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>Plain text or Freemarker message</td>
+<td>Content of the message. If using Freemarker, the <code>filenames</code> list can be used to get the names of all files that have been generated.</td>
+</tr>
+<tr>
+<td><strong><code>markAsExported</code></strong> action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>label</td>
+<td>String</td>
+<td>Any string value</td>
+<td>The exported reports will be marked as exported with this label.</td>
+</tr>
+<tr>
+<td><strong><code>sftpUpload</code></strong> action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sftpData</td>
+<td>JSON object</td>
+<td></td>
+<td>See below</td>
+</tr>
+<tr>
+<td><strong><code>sftpUpload.sftpData</code></strong> action</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>host</td>
+<td>String</td>
+<td></td>
+<td>The SFTP host to connect to. You can upload to a specific folder by setting the <code>homedir</code> (home directory) of the SFTP user to that folder. You cannot specify a specific folder any other way.</td>
+</tr>
+<tr>
+<td>login</td>
+<td>String</td>
+<td></td>
+<td>The username to use for SFTP authentication.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>String</td>
+<td></td>
+<td>The password to use during authentication.</td>
+</tr>
+<tr>
+<td>port</td>
+<td>Integer</td>
+<td></td>
+<td>The port to connect to on the SFTP server.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Template parameter</strong></p>
+<p>The <code>template</code> parameter is used to format the Expensify data as you wish. It is based on the Freemarker language's syntax.</p>
+<p>See the <a href="https://integrations.expensify.com/Integration-Server/doc/export_report_template.html">export template format reference</a> for more information about how to write export templates.</p>
+<p>We recommend storing your template in separate files, which can be passed to the request more easily with cURL's `@` operator.</p>
+<p><strong>Example Request</strong></p>
+<pre><code>    curl --location 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    --data-urlencode 'requestJobDescription={
+            "type":"file",
+            "credentials":{
+                "partnerUserID":{{partnerUserID}},
+                "partnerUserSecret":{{partnerUserSecret}}
+            },
+            "onReceive":{
+                "immediateResponse":["returnRandomFileName"]
+            },
+            "inputSettings":{
+                "type":"combinedReportData",
+                "filters":{
+                    "reportIDList": "R00bCluvcO4T,R006AseGxMka"
+                }
+            },
+            "outputSettings":{
+                "fileExtension":"csv"
+            }
+        }'\'' \
+        --data-urlencode '\''template@expensify_template.ftl'\'''
+</code></pre>
+<p><strong>Example Response</strong></p>
+<pre><code>    {
+    "responseCode": 200
+    }
+</code></pre>
+<h2 id="create">CREATE</h2>
+<p>This section details creating a report within a user's Expensify account using the <code>requestJobDescription</code> format. However, this functionality requires prior enablement by Expensify Concierge.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>
+<p>Domain and Policy Admin permissions</p>
+</li>
+<li>
+<p>Functionality enabled for your domain by contacting <a href="https://mailto:concierge@expensify.com">concierge@expensify.com</a></p>
+</li>
+</ul>
+<p><strong>Error Handling:</strong></p>
+<p>If you encounter the "Not authorized to authenticate as user" error, it signifies report creation functionality is not enabled for your domain.</p>
+<p><strong>Request Format:</strong></p>
+<p>The request utilizes the <code>requestJobDescription</code> format with specific <code>inputSettings</code>. Here's a breakdown of the required fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Format</th>
+<th>Valid Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>String</td>
+<td>"report"</td>
+<td>Specifies the job type as report creation.</td>
+</tr>
+<tr>
+<td><strong>employeeEmail</strong></td>
+<td>String</td>
+<td>A valid email address</td>
+<td>The report will be created in the corresponding user's account.</td>
+</tr>
+<tr>
+<td><strong>report</strong> (JSON Object)</td>
+<td></td>
+<td>See report details below.</td>
+<td>Defines report properties.</td>
+</tr>
+<tr>
+<td><strong>expenses</strong> (JSON Array)</td>
+<td></td>
+<td>See expenses details below.</td>
+<td>Defines expense details to be included in the report (optional).</td>
+</tr>
+<tr>
+<td><strong>policyID</strong></td>
+<td>String</td>
+<td>Any valid Expensify policy ID</td>
+<td>The report will be associated with this policy.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>inputSettings.report Details:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Format</th>
+<th>Valid Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>title</strong></td>
+<td>String</td>
+<td></td>
+<td>The title of the report.</td>
+</tr>
+<tr>
+<td><strong>fields</strong> (Optional - JSON Object)</td>
+<td></td>
+<td>A series of key-value pairs.</td>
+<td>Defines values for custom fields on the specified policy (key names require underscores for non-alphanumeric characters).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>inputSettings.expenses Details (Optional):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Format</th>
+<th>Valid Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>merchant</strong></td>
+<td>String</td>
+<td></td>
+<td>The merchant name for the expense.</td>
+</tr>
+<tr>
+<td><strong>currency</strong></td>
+<td>String</td>
+<td>Three-letter currency code (e.g., USD, EUR)</td>
+<td>The currency in which the expense was made.</td>
+</tr>
+<tr>
+<td><strong>date</strong></td>
+<td>Date</td>
+<td>yyyy-mm-dd format</td>
+<td>The date of the expense.</td>
+</tr>
+<tr>
+<td><strong>amount</strong></td>
+<td>Integer</td>
+<td></td>
+<td>The expense amount in cents.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Request</strong></p>
+<pre><code>    curl --location 'https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'requestJobDescription={
+            "type": "create",
+            "credentials": {
+                "partnerUserID": {{partnerUserID}},
+                "partnerUserSecret":{{partnerUserSecret}}
+            },
+            "inputSettings": {
+                "type": "report",
+                "policyID": "952DB91B963583C7",
+                "report": {
+                    "title": "Name of the report",
+                    "fields":{
+                        "reason_of_trip": "Business trip",
+                        "employees": "3"
+                    }
+                },
+                "employeeEmail": "ifedolapo387@gmail.com",
+                "expenses": [
+                    {
+                        "date": "2024-03-24",
+                        "currency": "USD",
+                        "merchant": "Name of merchant",
+                        "amount": 1234
+                    },
+                    {
+                        "date": "2024-03-27",
+                        "currency": "CAD",
+                        "merchant": "Name of merchant",
+                        "amount": 2211
+                    }
+                ]
+            }
+        }'\'''
+</code></pre>
+<p><strong>Example Response</strong></p>
+<pre><code>    {
+"responseCode": 200,
+"reportName": "Name of the report",
+"reportID": "R006AseGxMka"
+}
+</code></pre>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../request_format/" title="Request format"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../errorcodes/" title="Error codes">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../request_format/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../errorcodes/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

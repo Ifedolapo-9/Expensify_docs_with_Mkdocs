@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Error codes - Modified Expensify Docs</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Error codes";
+        var mkdocs_page_input_path = "errorcodes.md";
+        var mkdocs_page_url = null;
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Modified Expensify Docs
+        </a>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../authentication/">Authentication</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../request_format/">Request format</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../endpoints/">Endpoints</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Error codes</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/">Glossary</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../swagger/">Swagger</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Modified Expensify Docs</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Error codes</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<p><strong>Expensify API Error Codes</strong></p>
+<p>This table lists potential error codes encountered when using the Expensify API and their possible reasons.</p>
+<table>
+<thead>
+<tr>
+<th>Error Code</th>
+<th>Possible Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>207 (Partial Success)</td>
+<td>Some of the reports failed to update. Their IDs are contained in the list <code>failedReports</code> within the response.</td>
+</tr>
+<tr>
+<td>400 (Bad Request)</td>
+<td>Missing required parameter</td>
+</tr>
+<tr>
+<td></td>
+<td>Invalid parameter value format</td>
+</tr>
+<tr>
+<td></td>
+<td>Malformed JSON body</td>
+</tr>
+<tr>
+<td>401 (Unauthorized)</td>
+<td>Invalid or missing API credentials</td>
+</tr>
+<tr>
+<td></td>
+<td>Insufficient permissions for the requested action</td>
+</tr>
+<tr>
+<td>403 (Forbidden)</td>
+<td>The requested action is not allowed for your account</td>
+</tr>
+<tr>
+<td></td>
+<td>Resource access restrictions in place</td>
+</tr>
+<tr>
+<td>404 (Not Found)</td>
+<td>Requested endpoint does not exist</td>
+</tr>
+<tr>
+<td></td>
+<td>Resource not found (e.g., report with a specific ID)</td>
+</tr>
+<tr>
+<td>409 (Conflict)</td>
+<td>Attempting to create a duplicate resource (e.g., creating a report with an existing ID)</td>
+</tr>
+<tr>
+<td></td>
+<td>Conflicting data in the request</td>
+</tr>
+<tr>
+<td>410 (Validation Error)</td>
+<td>The request contains invalid data that fails validation checks on the Expensify API side.</td>
+</tr>
+<tr>
+<td></td>
+<td>Examples: Malformed date format, invalid enum value, etc.</td>
+</tr>
+<tr>
+<td>410 (Gone)</td>
+<td>Requested endpoint has been deprecated and is no longer available</td>
+</tr>
+<tr>
+<td></td>
+<td>Resource has been deleted</td>
+</tr>
+<tr>
+<td>422 (Unprocessable Entity)</td>
+<td>Validation errors in the request payload</td>
+</tr>
+<tr>
+<td></td>
+<td>Business logic violation (e.g., attempting to update a report with an invalid status)</td>
+</tr>
+<tr>
+<td>429 (Too Many Requests)</td>
+<td>Exceeding API rate limits</td>
+</tr>
+<tr>
+<td></td>
+<td>Throttling applied due to frequent requests</td>
+</tr>
+<tr>
+<td>500 (Generic Error)</td>
+<td>Unexpected error on the Expensify API server.</td>
+</tr>
+<tr>
+<td></td>
+<td>This is a generic error code for internal server issues. Consult Expensify support for further investigation in case of a 500 error.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../endpoints/" title="Endpoints"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../glossary/" title="Glossary">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../endpoints/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../glossary/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>
